@@ -9,8 +9,8 @@ RUN dotnet restore
 # Copy the rest of the source code
 COPY . .
 
-# Build and publish
-RUN dotnet publish MarketplaceApi.csproj -c Release -o /app/publish --no-restore
+# Build and publish (no --no-restore so it resolves on Linux)
+RUN dotnet publish MarketplaceApi.csproj -c Release -o /app/publish
 
 # Runtime Stage
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
